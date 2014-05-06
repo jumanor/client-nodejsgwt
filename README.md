@@ -1,8 +1,8 @@
 CLIENTE NODEJSGWT 
 =
 * Solamente probado con el Navegador CHROME.
-* Testeado solo para conexiones <websocket>.
-* En caso la conexion <websocket> falle se usa <xhr-polling>, esto ultimo no testeado.
+* Testeado solo para conexiones "websocket".
+* En caso la conexion "websocket" falle se usa "xhr-polling", esto ultimo no testeado.
 * Es servidor Node.js se encuentra alojado en http://prueba-jquerymobile.rhcloud.com.
 
 **ERRORES**
