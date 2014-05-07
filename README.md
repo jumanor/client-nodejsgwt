@@ -5,6 +5,10 @@ CLIENTE NODEJSGWT
 * En caso la conexion "websocket" falle se usa "xhr-polling", esto ultimo no testeado.
 * Es servidor Node.js se encuentra alojado en http://prueba-jquerymobile.rhcloud.com.
 
+**UN MICRO TUTORIAL**
+
+http://www.youtube.com/watch?v=s2cfzGVIwHU
+
 **ERRORES**
 * Aparentemente FF falla la conexion <websocket> en OPENSHIFT RED HAT
 
