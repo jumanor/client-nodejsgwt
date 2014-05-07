@@ -4,7 +4,8 @@ CLIENTE NODEJSGWT
 * Testeado solo para conexiones "websocket".
 * En caso la conexion "websocket" falle se usa "xhr-polling", esto ultimo no testeado.
 * Es servidor Node.js se encuentra alojado en http://prueba-jquerymobile.rhcloud.com.
-
+* El codigo fuente del servidor http://github.com/jumanor/server-nodejsgwt .
+* 
 **UN MICRO TUTORIAL**
 
 http://www.youtube.com/watch?v=s2cfzGVIwHU
