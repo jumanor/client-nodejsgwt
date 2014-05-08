@@ -11,11 +11,15 @@ CLIENTE NODEJSGWT
 http://www.youtube.com/watch?v=s2cfzGVIwHU
 
 **ERRORES**
-* Aparentemente FF falla la conexion <websocket> en OPENSHIFT RED HAT
+* Aparentemente FF falla la conexion "websocket" y toma la conexion "xhr-polling" en OPENSHIFT RED HAT
+* En una conexion "xhr-polling" se lanza el evento "disconnect" con un retardo de 20 segundos.  
 
 **PROBANDO**
 
 http://nodejs2014.appspot.com/
+
+**ACTUALIZACION**
+* Se creo un Chat (8/5/2014)
 
 **INSTALACION**
 
