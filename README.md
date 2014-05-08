@@ -1,6 +1,6 @@
 CLIENTE NODEJSGWT 
 =
-* Solamente probado con el Navegador CHROME.
+* Solamente probado con el Navegador CHROME, FIREFOX, IE 10.
 * Testeado solo para conexiones "websocket".
 * En caso la conexion "websocket" falle se usa "xhr-polling", esto ultimo no testeado.
 * Es servidor Node.js se encuentra alojado en http://prueba-jquerymobile.rhcloud.com.
@@ -11,8 +11,9 @@ CLIENTE NODEJSGWT
 http://www.youtube.com/watch?v=s2cfzGVIwHU
 
 **ERRORES**
-* Aparentemente FF falla la conexion "websocket" y toma la conexion "xhr-polling" en OPENSHIFT RED HAT
-* En una conexion "xhr-polling" se lanza el evento "disconnect" con un retardo de 20 segundos.  
+
+* Aparentemente cuando se ejecuta detras de un PROXY la conexion "websocket" falla y utiliza la "xhr-polling"
+* Si la conexion es "xhr-polling" el evento "disconnect" tarda 30 seg aprox.
 
 **PROBANDO**
 
