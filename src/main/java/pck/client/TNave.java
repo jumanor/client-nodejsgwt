@@ -134,6 +134,6 @@ public class TNave {
 		
 	}
    protected void BorrarNave(){
- 		context.clearRect(x, y-10, w+100, h+10);	
+ 		context.clearRect(x-5, y-10, w+150, h+10);	
      }
 }

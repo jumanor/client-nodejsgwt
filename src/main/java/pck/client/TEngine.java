@@ -43,7 +43,6 @@ public class TEngine {
 		contenedorCanvas=new AbsolutePanel();
 	
 		path="http://prueba-jquerymobile.rhcloud.com/";
-		
 		//path="http://127.0.0.1:9091/";
 		
 		GWT.log("RUTA NODE: "+ path);
@@ -66,8 +65,6 @@ public class TEngine {
 	
 	private native void loadNodeJS(String path) /*-{
 		 //Utilzamos <websocket>,si la conexion falla entonces utiliza <xhr-polling>
-		 //la conexion  <xhr-polling> no controla el evento "disconnet",la conexion es mantenida unos 30 segundos
-		 //aparentemente es un error de OPENSHIFT!!!
 		 
 		 $wnd.socket = io.connect("ws://prueba-jquerymobile.rhcloud.com:8000");
 		 //$wnd.socket = io.connect("ws://127.0.0.1:9091");
@@ -83,6 +80,7 @@ public class TEngine {
 				 tmp.@pck.client.TEngine::onChangeAllPositionUsers(Lcom/google/gwt/core/client/JsArray;)(data);
 				 
 			  });
+			  //Message Broadcast
 			 $wnd.socket.on('onBeginPositionUser', function (data,fn) {
 			 	
 			    var data=JSON.parse(data);
@@ -116,8 +114,31 @@ public class TEngine {
 		 }); 
 		   
 	}-*/;
+	/*
+	 * Para Movimiento del Teclado (BROADCAST) CONEXION TCP
+	 */
+	public native void changePositionUser(int x,int y,String name) /*-{
+	   var user={};
+	   user.x=x;
+	   user.y=y;
+	   user.name=name;
+	   $wnd.socket.emit("onChangePositionUser",JSON.stringify(user));
+	   
+	}-*/;
+	/*
+	 * Para Moviento de Mouse (IMPLEMENTAR UNA CONEXION UDP)
+	 */
+	public native void changePositionUserMouse(int x,int y,String name) /*-{
+	   var user={};
+	   user.x=x;
+	   user.y=y;
+	   user.name=name;
+	   $wnd.socket.emit("onChangePositionUserMouse",JSON.stringify(user));
+	   
+	}-*/;
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////BEGIN CHAT//////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////BEGIN CHAT//////////////////////////////////////////////////////////////////////
 	/**
 	 * Es usuario se desconecto
 	 */
@@ -187,6 +208,7 @@ public class TEngine {
 		}
 	}
 	public void onChangeAllPositionUsers(JsArray<TUser> users){
+		//GWT.log("CHANGE ALL");
 		
 		if(naves.size() < users.length()){
 			GWT.log("menor");
@@ -260,14 +282,7 @@ public class TEngine {
 		naveTerricola.DibujarNave();
 		naves.add(naveTerricola);
 	}
-	public native void changePositionUser(int x,int y,String name) /*-{
-	   var user={};
-	   user.x=x;
-	   user.y=y;
-	   user.name=name;
-	   $wnd.socket.emit("onChangePositionUser",JSON.stringify(user));
-	   
-	}-*/;
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -297,7 +312,8 @@ public class TEngine {
 		contenedorCanvas.add(naveTerricola.getCanvas(), 0, 0);
 		
 		//naveTerricola.DibujarNave();
-	
+		
+		
 		teclas.addKeyDownHandler(new KeyDownHandler() {
 			
 			@Override
@@ -325,7 +341,9 @@ public class TEngine {
 			}
 		});
 
-		RootPanel.get("notas").add(new HTML("<b>IMPORTANTE:</b> (Utilizar Navegador <b>CHROME</b> - jumanor@gmail.com) <br>1) Hacer Click sobre el Marciano <br> 2) Mueva el Marciano con las teclas"));
+		RootPanel.get("notas").add(new HTML("<b>IMPORTANTE:</b> (Verifica que no estes detras de un <b>PROXY</b> - jumanor@gmail.com) <br>1) Hacer Click sobre el Marciano <br> 2) Mueva el Marciano con las Teclado o Mouse <br> 3) Con el Mouse no funciona bien :( <br> <b>codigo :</b> http://github.com/jumanor/client-nodejsgwt"));
+		//////////////////////////////////////////////MOUSE/////////////////////////////////////////
+		new TCapturarMouse(this,teclas,naveTerricola);
 		
 		////////////////////////////////////////////////CHAT/////////////////////////////////////////
 		final DialogBox dlg=new DialogBox();
@@ -342,6 +360,7 @@ public class TEngine {
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
 				dlg.center();
+				((TFormChat)dlg.getWidget()).moveScrollToFinal();
 			}
 		});
 		RootPanel.get("chat").add(btn);

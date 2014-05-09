@@ -13,10 +13,10 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
+
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasText;
+
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
@@ -45,6 +45,7 @@ public class TFormChat extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		this.engine=engine;
+		
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private void agregarMensajeLargo(String mensaje,String color){
@@ -58,10 +59,14 @@ public class TFormChat extends Composite {
 		lstUsersMessage.setItemSelected(lstUsersMessage.getItemCount()-1, true);
 		lstUsersMessage.setItemSelected(lstUsersMessage.getItemCount()-1, false);
 	}
-	private void moveralfinal(ListBox lst){
+	private void moveScrollToFinal(ListBox lst){
 		//Mueve el scrooll bar al final
 		lst.setItemSelected(lst.getItemCount()-1, true);
 		lst.setItemSelected(lst.getItemCount()-1, false);
+	}
+	public void moveScrollToFinal(){
+		moveScrollToFinal(lstUsersConnect);
+		moveScrollToFinal(lstUsersMessage);
 	}
 	private void formatearMensaje(String name,String  mensaje,String color)
 	{
@@ -88,14 +93,14 @@ public class TFormChat extends Composite {
 			
 		}
 		//Mueve el scrooll bar al final
-		moveralfinal(lstUsersMessage);
+		moveScrollToFinal(lstUsersMessage);
 	;
 	}	
 	public void agregarTodosUsuarios(ArrayList<TMensajeChat> usr){
 		for(TMensajeChat tmp:usr){
 			lstUsersConnect.addItem(tmp.getName()+":"+tmp.getMensaje());
 		}
-		moveralfinal(lstUsersConnect);
+		moveScrollToFinal(lstUsersConnect);
 	}
 	
 	public void agregarMensaje(String usuario,String mensaje,String color){
@@ -106,11 +111,11 @@ public class TFormChat extends Composite {
 		NodeList<OptionElement> options = selectElement.getOptions();
 		options.getItem(lstUsersMessage.getItemCount()-1).getStyle().setColor(color);
 		
-		moveralfinal(lstUsersMessage);
+		moveScrollToFinal(lstUsersMessage);
 	}
 	public void agregarUsuario(String usr){
 		lstUsersConnect.addItem(usr);
-		moveralfinal(lstUsersConnect);
+		moveScrollToFinal(lstUsersConnect);
 	}
 	public void agregarUsuario(String usr,String color){
 		lstUsersConnect.addItem(usr);
@@ -118,7 +123,7 @@ public class TFormChat extends Composite {
 		SelectElement selectElement = SelectElement.as(lstUsersConnect.getElement());
 		NodeList<OptionElement> options = selectElement.getOptions();
 		options.getItem(lstUsersConnect.getItemCount()-1).getStyle().setColor(color);
-		moveralfinal(lstUsersConnect);
+		moveScrollToFinal(lstUsersConnect);
 		
 	}
 	public void eliminarUsuario(String usr){
