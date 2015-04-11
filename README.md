@@ -26,3 +26,5 @@ http://nodejs2014.appspot.com/
 
 * Instale el plugin de MAVEN para Eclipse
 * Para configura el proyecto MAVEN en Eclipse ver el siguiente [video](http://www.dailymotion.com/video/x1ru116_instalacion-matamarciano-gwt-html5_tech)
+
+![a link](http://googledrive.com/host/0B72oLqC-8YVbfkJKMFJrTWRuMmhWT19wcE83UFU1T2tHSHhHQllfVzJ2Z2tnUVltV2M3Qm8/nodegwt.png?raw=true)
