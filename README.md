@@ -1,3 +1,7 @@
+**MUY IMPORTANTE !!!**
+* El servidor(alojamiento FREE) http://prueba-jquerymobile.rhcloud.com a veces esta fuera de servicio.
+* Refresque reiterademente (aprox 5 veces) el Navegador en http://prueba-jquerymobile.rhcloud.com cuando el servicio ya este disponible ingrese a http://nodejs2014.appspot.com/
+
 CLIENTE NODEJSGWT 
 =
 * Solamente probado con el Navegador CHROME, FIREFOX, IE 10.
